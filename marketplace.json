@@ -1,0 +1,20 @@
+{
+  "name": "fourli-skills",
+  "interface": {
+    "displayName": "Fourli Skills"
+  },
+  "plugins": [
+    {
+      "name": "fourli-planning",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fourli-planning"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

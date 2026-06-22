@@ -1,0 +1,4 @@
+interface:
+  display_name: "fourli: planning"
+  short_description: "Lightweight overview planning for superpowers handoff"
+  default_prompt: "Use $fourli-planning to create or update a lightweight docs/planning overview for this large task without replacing superpowers spec/plan/execute/verification."
