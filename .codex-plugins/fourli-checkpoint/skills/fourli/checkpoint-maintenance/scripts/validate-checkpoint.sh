@@ -20,7 +20,14 @@ END_COUNT=$(grep -c '<!-- fourli-checkpoint:inject-end -->' "$CHECKPOINT_FILE" |
     exit 3
 }
 
-LINES=$(sh "$(dirname "$0")/extract-inject-block.sh" "$CHECKPOINT_FILE" 2>/dev/null | wc -l | tr -d ' ')
+BLOCK_OUTPUT="$(sh "$(dirname "$0")/extract-inject-block.sh" "$CHECKPOINT_FILE" 2>/dev/null)"
+EXTRACT_STATUS=$?
+[ "$EXTRACT_STATUS" -eq 0 ] || {
+    echo "[fourli-checkpoint] injection block exceeds 60 lines or cannot be extracted" >&2
+    exit 4
+}
+
+LINES=$(printf "%s\n" "$BLOCK_OUTPUT" | wc -l | tr -d ' ')
 [ "$LINES" -le 60 ] || {
     echo "[fourli-checkpoint] injection block exceeds 60 lines" >&2
     exit 4
