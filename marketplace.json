@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "fourli-planning",
+      "name": "fourli-checkpoint",
       "source": {
         "source": "local",
-        "path": "./plugins/fourli-planning"
+        "path": "./.codex-plugins/fourli-checkpoint"
       },
       "policy": {
         "installation": "AVAILABLE",

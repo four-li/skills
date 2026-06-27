@@ -1,0 +1,34 @@
+{
+  "name": "fourli-checkpoint",
+  "version": "0.1.0",
+  "description": "Lightweight task checkpoint handoff for large workflows.",
+  "author": {
+    "name": "fourli",
+    "url": "https://github.com/fourli"
+  },
+  "repository": "https://github.com/fourli/fourli-skills",
+  "license": "MIT",
+  "keywords": [
+    "checkpoint",
+    "handoff",
+    "workflow",
+    "superpowers"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Fourli Checkpoint",
+    "shortDescription": "Lightweight checkpoint handoff for large tasks",
+    "longDescription": "fourli-checkpoint keeps one docs/checkpoints checkpoint per large task. It records handoff state only and does not replace the primary workflow for requirements design, implementation planning, execution, or verification.",
+    "developerName": "fourli",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Create a lightweight checkpoint.",
+      "Show the current active checkpoint."
+    ]
+  }
+}

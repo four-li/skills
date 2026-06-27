@@ -1,40 +1,17 @@
 # Fourli Skills Plugins
 
-Personal Codex plugins and skills by Fourli.
+## 当前支持
 
-## Plugins
+- `fourli-checkpoint`：为大任务维护轻量 checkpoint 接力文件的 Codex 插件。
 
-- `fourli-planning`: lightweight `docs/planning/overview.md` handoff planning for large tasks that use superpowers.
-
-## Install In Codex
-
-Add this repository as a Codex plugin marketplace, then install `fourli-planning`.
-
-For local development:
+## 安装
 
 ```bash
 codex plugin marketplace add /path/to/fourli-skills
 ```
 
-For GitHub usage, add the cloned repository path as the marketplace root.
+## 说明
 
-## fourli-planning
-
-`fourli-planning` keeps one project-local overview file:
-
-```text
-docs/planning/
-  .active_plan
-  <task-id>/
-    overview.md
-```
-
-It is intentionally lightweight:
-
-- no `.planning/`
-- no `task_plan.md`, `findings.md`, or `progress.md`
-- no PreToolUse hook
-- no blocking Stop gate
-- no automatic completion judgment
-
-Superpowers still owns spec, implementation plan, execution, and verification.
+- 仓库通过 `marketplace.json` 暴露 `fourli-checkpoint`。
+- `fourli-checkpoint` 使用 `.codex-plugins/fourli-checkpoint`。
+- checkpoint 只记录大任务接力状态，不替代主工作流的需求设计、实现计划、执行和验证。
