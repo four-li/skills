@@ -2,7 +2,7 @@
 set -u
 
 ROOT="${PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
-RESOLVER="${ROOT}/skills/fourli/checkpoint-maintenance/scripts/resolve-checkpoint.sh"
+RESOLVER="${ROOT}/skills/fourli-checkpoint-maintenance/scripts/resolve-checkpoint.sh"
 EMITTER="${ROOT}/hooks/emit-json.py"
 
 CHECKPOINT_FILE="$(sh "$RESOLVER" 2>/dev/null)" || exit 0

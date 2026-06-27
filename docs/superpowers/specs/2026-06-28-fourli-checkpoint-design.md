@@ -1,5 +1,7 @@
 # Fourli Checkpoint 设计
 
+> 纠偏说明：本设计最初按单个 Codex 插件目录讨论，后续已修正为开源 `fourli-skills` 包结构。最终实现以根目录 `.codex-plugin/`、`skills/`、`hooks/` 为准；`.codex-plugins/fourli-checkpoint/` 不再作为目标结构。
+
 ## 目标
 
 将现有 `fourli-planning` 重构为 `fourli-checkpoint`。新能力只为大任务提供轻量接力检查点，帮助新窗口或后续 agent 恢复“当前做到了哪里、下一步看哪里、哪些方向变了”。

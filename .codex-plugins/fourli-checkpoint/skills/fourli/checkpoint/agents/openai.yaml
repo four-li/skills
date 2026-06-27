@@ -1,4 +1,0 @@
-interface:
-  display_name: "fourli/checkpoint"
-  short_description: "Create, inspect, or switch a lightweight checkpoint"
-  default_prompt: "Use $fourli/checkpoint to create, inspect, or switch a lightweight docs/checkpoints checkpoint for this large task without replacing the primary workflow."

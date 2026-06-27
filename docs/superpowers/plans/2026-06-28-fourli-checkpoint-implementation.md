@@ -1,5 +1,7 @@
 # Fourli Checkpoint Implementation Plan
 
+> Superseded note: This plan originally targeted a nested `.codex-plugins/fourli-checkpoint/` layout. The repository has since been corrected to a root package layout with `.codex-plugin/`, `skills/`, and `hooks/`. Do not use this plan as the current file layout source of truth.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Replace `fourli-planning` with `fourli-checkpoint`, using a lightweight checkpoint file for large-task handoff without replacing the primary workflow.

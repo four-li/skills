@@ -1,0 +1,34 @@
+{
+  "name": "fourli-skills",
+  "version": "0.1.0",
+  "description": "Fourli's reusable skills package for agent-assisted development.",
+  "author": {
+    "name": "fourli",
+    "url": "https://github.com/fourli"
+  },
+  "repository": "https://github.com/fourli/fourli-skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "checkpoint",
+    "handoff",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Fourli Skills",
+    "shortDescription": "Reusable Fourli skills for agent-assisted development",
+    "longDescription": "fourli-skills is a reusable skills package. Most skills are pure skills; Codex hooks are optional enhancements for skills that benefit from lifecycle support.",
+    "developerName": "fourli",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use fourli-checkpoint to create a lightweight checkpoint.",
+      "Use fourli-checkpoint-maintenance to maintain an existing active checkpoint at handoff boundaries."
+    ]
+  }
+}
