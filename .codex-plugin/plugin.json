@@ -31,8 +31,8 @@
       "Write"
     ],
     "defaultPrompt": [
-      "Use fourli-checkpoint to create a lightweight checkpoint.",
-      "Use fourli-checkpoint-maintenance to maintain an existing active checkpoint at handoff boundaries."
+      "Use checkpoint to create a lightweight checkpoint.",
+      "Use checkpoint-maintenance to maintain an existing active checkpoint at handoff boundaries."
     ]
   }
 }

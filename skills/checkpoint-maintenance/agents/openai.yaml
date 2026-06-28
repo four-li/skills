@@ -1,0 +1,4 @@
+interface:
+  display_name: "fourli:checkpoint-maintenance"
+  short_description: "Maintain an existing active checkpoint at handoff boundaries"
+  default_prompt: "Use $checkpoint-maintenance only when an active checkpoint already exists and a phase boundary, handoff risk, direction change, compaction/stop moment, or closeout requires an update."

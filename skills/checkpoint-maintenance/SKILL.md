@@ -1,5 +1,5 @@
 ---
-name: fourli-checkpoint-maintenance
+name: checkpoint-maintenance
 description: Use only when an active checkpoint already exists and the task reaches a phase boundary, session start/resume, context handoff risk, direction change, compaction/stop moment, or overall completion. Do not use for ordinary execution progress.
 ---
 
@@ -51,8 +51,8 @@ Read the full checkpoint file only when:
 Run from the project root:
 
 ```bash
-sh <fourli-skills-root>/skills/fourli-checkpoint-maintenance/scripts/resolve-checkpoint.sh
-sh <fourli-skills-root>/skills/fourli-checkpoint-maintenance/scripts/extract-inject-block.sh docs/checkpoints/<id>/checkpoint.md
-sh <fourli-skills-root>/skills/fourli-checkpoint-maintenance/scripts/validate-checkpoint.sh docs/checkpoints/<id>/checkpoint.md
-sh <fourli-skills-root>/skills/fourli-checkpoint-maintenance/scripts/finish-checkpoint.sh
+sh <fourli-skills-root>/skills/checkpoint-maintenance/scripts/resolve-checkpoint.sh
+sh <fourli-skills-root>/skills/checkpoint-maintenance/scripts/extract-inject-block.sh docs/checkpoints/<id>/checkpoint.md
+sh <fourli-skills-root>/skills/checkpoint-maintenance/scripts/validate-checkpoint.sh docs/checkpoints/<id>/checkpoint.md
+sh <fourli-skills-root>/skills/checkpoint-maintenance/scripts/finish-checkpoint.sh
 ```

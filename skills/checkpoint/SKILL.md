@@ -1,5 +1,5 @@
 ---
-name: fourli-checkpoint
+name: checkpoint
 description: Use when the user explicitly asks to create, inspect, or switch a lightweight checkpoint for a large task. A checkpoint records handoff state only; it must not replace the primary workflow for requirements design, implementation planning, execution, or verification.
 ---
 
@@ -36,7 +36,7 @@ docs/checkpoints/
 Run from the project root:
 
 ```bash
-sh <fourli-skills-root>/skills/fourli-checkpoint/scripts/init-checkpoint.sh "Task Name"
-sh <fourli-skills-root>/skills/fourli-checkpoint/scripts/set-active-checkpoint.sh <checkpoint-id>
-sh <fourli-skills-root>/skills/fourli-checkpoint/scripts/set-active-checkpoint.sh
+sh <fourli-skills-root>/skills/checkpoint/scripts/init-checkpoint.sh "Task Name"
+sh <fourli-skills-root>/skills/checkpoint/scripts/set-active-checkpoint.sh <checkpoint-id>
+sh <fourli-skills-root>/skills/checkpoint/scripts/set-active-checkpoint.sh
 ```

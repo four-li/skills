@@ -1,7 +1,7 @@
 {
   "name": "fourli-skills",
   "version": "0.1.0",
-  "description": "Checkpoint-focused skills for agent task handoff and session continuity.",
+  "description": "Fourli's reusable skills package for agent-assisted development.",
   "author": {
     "name": "fourli",
     "url": "https://github.com/four-li"

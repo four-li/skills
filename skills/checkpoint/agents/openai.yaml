@@ -1,0 +1,3 @@
+interface:
+  display_name: "fourli:checkpoint"
+  short_description: "Create, inspect, or switch a lightweight checkpoint"

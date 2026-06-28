@@ -2,7 +2,7 @@
 set -u
 
 ROOT="${PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
-SCRIPT_ROOT="${ROOT}/skills/fourli-checkpoint-maintenance/scripts"
+SCRIPT_ROOT="${ROOT}/skills/checkpoint-maintenance/scripts"
 RESOLVER="${SCRIPT_ROOT}/resolve-checkpoint.sh"
 EXTRACTOR="${SCRIPT_ROOT}/extract-inject-block.sh"
 EMITTER="${ROOT}/hooks/emit-json.py"

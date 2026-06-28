@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "fourli",
-  "description": "Checkpoint-focused skills for agent task handoff and session continuity.",
+  "description": "Fourli's reusable skills package for agent-assisted development.",
   "owner": {
     "name": "fourli",
     "url": "https://github.com/four-li"
@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "fourli-skills",
-      "description": "Create and maintain lightweight checkpoints for long-running agent tasks.",
+      "description": "Reusable Fourli skills for thinking, teaching, code simplification, and checkpoint handoff.",
       "source": "./",
       "category": "productivity"
     }

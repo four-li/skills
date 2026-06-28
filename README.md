@@ -1,107 +1,74 @@
 # Fourli Skills
 
-`fourli-skills` 是一个给 AI agent 安装的轻量 skills 包，当前主要提供大任务接力用的 checkpoint 能力。仓库本身只维护 skills、可选 hooks 和相关文档；真正的 checkpoint 运行文件会生成在使用它的目标项目里。
-
-## 适用范围
-
-- 适合需要在长任务、多阶段任务、跨会话任务之间做接力的项目。
-- 当前主要面向 Codex 使用，也尽量保持 `skills/` 目录可以被其他兼容 skills 的 agent 直接读取。
-- `hooks/` 只是 Codex 的增强层，不是核心依赖。
-
-## 安装
-
-### Codex
-
-公开使用时，优先把这个仓库作为 Git marketplace 加入：
-
-```bash
-codex plugin marketplace add four-li/skills
-```
-
-### npx skills
-
-如果你使用支持 [skills](https://github.com/vercel-labs/skills) CLI 的 agent，也可以直接从这个仓库安装。
-
-先查看仓库里有哪些 skill：
-
-```bash
-npx skills add four-li/skills --list
-```
-
-例如，把 skill 全局安装给 `trae-cn`：
-
-```bash
-npx skills add four-li/skills --agent trae-cn -g -y
-```
-
-这个仓库当前已经可以被 `npx skills add` 直接识别，不需要额外的配置文件。能工作的关键是仓库根目录下存在符合约定的 `skills/<skill-name>/SKILL.md` 结构。
-
-如果你是全局安装，后续只更新这个仓库安装出来的 skills，可以执行：
-
-```bash
-npx skills update -g fourli-checkpoint fourli-checkpoint-maintenance
-```
-
-如果只想先看当前全局装了什么，可以先执行：
-
-```bash
-npx skills list -g
-```
-
-### 其他兼容 skills 的 agent
-
-优先读取仓库根目录下的 `skills/`。这个仓库的核心能力都放在这里。
-
-如果目标 agent 不支持 hooks，也可以只使用 `skills/`，再通过项目级或用户级 `AGENTS.md` 约束何时触发 maintenance skill。
+`fourli-skills` 是一组给 AI agent 使用的 reusable skills（可复用技能）。它不是单一 checkpoint 插件，而是把我常用的几类工作方式拆成独立 skill：先想清楚、做技术讲解、简化代码、创建 checkpoint、维护 checkpoint。
 
 ## 包含的 Skills
 
 | Skill | 什么时候用 | 作用 |
 | --- | --- | --- |
-| `fourli-checkpoint` | 用户明确要求创建、查看或切换 checkpoint 时 | 创建或切换一个轻量 checkpoint，用来记录大任务的接力状态 |
-| `fourli-checkpoint-maintenance` | 已有 active checkpoint，且进入阶段边界、方向变更、上下文接力风险或任务收尾时 | 维护 checkpoint 内容，保证接力信息短、准、可继续 |
+| `think` | 需求还模糊、用户要求先想清楚，或已有 draft spec/design 需要被审问时 | 做短意图澄清，或审问草案里的歧义、边界、失败路径和验收标准 |
+| `teacher` | 用户显式调用 `$teacher`、`teacher`，或要求用 teacher 调研/讲解技术问题时 | 联网查事实，用中文讲解技术、AI、项目、框架、架构概念和工程社区内容 |
+| `code-opt` | 代码已经能工作，但结构、命名、重复或嵌套让它难读难维护时 | 在不改变行为的前提下简化代码 |
+| `checkpoint` | 用户明确要求创建、查看或切换 checkpoint 时 | 创建或切换一个轻量 checkpoint，用来记录大任务的接力状态 |
+| `checkpoint-maintenance` | 已有 active checkpoint，且进入阶段边界、方向变更、上下文接力风险或任务收尾时 | 维护 checkpoint 内容，保证接力信息短、准、可继续 |
+
+## 安装
+
+### Codex 插件
+
+公开使用时，优先把这个仓库作为 Git marketplace 加入：
+
+终端执行命令
+
+```bash
+codex plugin marketplace add four-li/skills
+```
+
+在 Codex App 里启用插件.(或codex cli中执行/plugins选择)后 `~/.codex/config.toml` 通常会出现：
+
+```toml
+[plugins."fourli-skills@fourli"]
+enabled = true
+```
+
+### npx skills
+
+例如，把这些 skills 全局安装给 `trae-cn`：
+
+```bash
+npx skills add four-li/skills --agent trae-cn -g -y
+```
+
+如果你是全局安装，后续只更新这个仓库安装出来的 skills，可以执行：
+
+```bash
+npx skills update -g think teacher code-opt checkpoint checkpoint-maintenance
+```
+
+### 其他兼容 skills 的 agent
+
+优先读取仓库根目录下的 `skills/`。这个仓库的核心能力都在这里。
+
+如果目标 agent 不支持 hooks，也可以只使用 `skills/`。其中 `checkpoint-maintenance` 会更依赖目标项目里的 `AGENTS.md` 约束来提醒 agent 何时触发。
 
 ## 可选 Hooks
 
-Codex hooks 只是增强层，用来减少 agent 漏掉 checkpoint 维护的概率：
+Codex hooks 是增强层，用来减少 agent 漏掉 checkpoint 维护的概率：
 
 - `SessionStart`：注入 active checkpoint 的定界文本块，先给 agent 一个短摘要。
 - `PreCompact`：通过 JSON `systemMessage` 做非阻断提醒。
 - `Stop`：通过 JSON `systemMessage` 做非阻断提醒。
 
-如果没有 hooks，skills 仍然可以工作，只是更依赖目标项目里的使用约定。
+没有 hooks 时，skills 仍然可以工作，只是 checkpoint 维护更依赖目标项目里的使用约定。
 
-## 仓库结构
+## Checkpoint 项目约定
 
-```text
-.codex-plugin/
-  plugin.json
-skills/
-  fourli-checkpoint/
-  fourli-checkpoint-maintenance/
-hooks/
-  hooks.json
-  session-start.sh
-  pre-compact.sh
-  stop.sh
-docs/
-```
-
-## 建议写入 AGENTS.md
-
-默认建议把下面这段加入“会实际使用 checkpoint 的目标项目”的 `AGENTS.md`，不是加入本仓库的 `AGENTS.md`。
-
-这样更稳妥，原因有两个：
-
-- 这条规则是项目工作流约束，不是所有项目都应该默认启用。
-- 它引用的是项目内路径 `docs/checkpoints/.active_checkpoint`，天然更适合项目级生效。
-
-如果你个人所有项目都统一使用这套 checkpoint 工作流，也可以把同一段规则加到用户级全局 `AGENTS.md`，但那应该算你的个人默认工作方式，而不是这个仓库的默认推荐。
+如果agent没有加Hooks, 应把以下提示词加到AGENTS.md 
 
 ```markdown
 ## Fourli Checkpoint
 
-If `docs/checkpoints/.active_checkpoint` exists, use `fourli-checkpoint-maintenance` only at session start/resume, phase boundaries, context handoff risk, direction changes, or task closeout.
+If `docs/checkpoints/.active_checkpoint` exists, use `checkpoint-maintenance` only at session start/resume, phase boundaries, context handoff risk, direction changes, or task closeout.
 
 For orientation, read only the delimited checkpoint inject block first. Read the full `checkpoint.md` only when updating direction changes, key evidence, closeout notes, closing the checkpoint, or repairing the checkpoint file.
 
@@ -113,7 +80,7 @@ Do not use checkpoint content as an implementation plan. The primary workflow ow
 checkpoint 只负责记录大任务接力状态，不负责替代主工作流。具体来说：
 
 - checkpoint 不是需求设计。
-- checkpoint 不是 implementation plan。
+- checkpoint 不是 implementation plan（实施计划，也就是拆解怎么做）。
 - checkpoint 不是执行日志。
 - checkpoint 不是验证记录。
 
