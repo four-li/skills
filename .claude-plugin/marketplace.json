@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "fourli-skills",
+  "description": "Checkpoint-focused skills for agent task handoff and session continuity.",
+  "owner": {
+    "name": "fourli",
+    "url": "https://github.com/four-li"
+  },
+  "plugins": [
+    {
+      "name": "fourli-skills",
+      "description": "Create and maintain lightweight checkpoints for long-running agent tasks.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

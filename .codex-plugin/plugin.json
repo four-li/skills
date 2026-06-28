@@ -4,9 +4,10 @@
   "description": "Fourli's reusable skills package for agent-assisted development.",
   "author": {
     "name": "fourli",
-    "url": "https://github.com/fourli"
+    "url": "https://github.com/four-li"
   },
-  "repository": "https://github.com/fourli/fourli-skills",
+  "homepage": "https://github.com/four-li/skills",
+  "repository": "https://github.com/four-li/skills",
   "license": "MIT",
   "keywords": [
     "skills",
