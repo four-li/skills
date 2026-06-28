@@ -22,6 +22,9 @@
     "shortDescription": "Reusable Fourli skills for agent-assisted development",
     "longDescription": "fourli-skills is a reusable skills package. Most skills are pure skills; Codex hooks are optional enhancements for skills that benefit from lifecycle support.",
     "developerName": "fourli",
+    "brandColor": "#4D6474",
+    "composerIcon": "./assets/fourli-skills-composer-icon.svg",
+    "logo": "./assets/fourli-skills-logo.svg",
     "category": "Productivity",
     "capabilities": [
       "Read",

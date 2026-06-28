@@ -36,6 +36,18 @@ npx skills add four-li/skills --agent trae-cn -g -y
 
 这个仓库当前已经可以被 `npx skills add` 直接识别，不需要额外的配置文件。能工作的关键是仓库根目录下存在符合约定的 `skills/<skill-name>/SKILL.md` 结构。
 
+如果你是全局安装，后续只更新这个仓库安装出来的 skills，可以执行：
+
+```bash
+npx skills update -g fourli-checkpoint fourli-checkpoint-maintenance
+```
+
+如果只想先看当前全局装了什么，可以先执行：
+
+```bash
+npx skills list -g
+```
+
 ### 其他兼容 skills 的 agent
 
 优先读取仓库根目录下的 `skills/`。这个仓库的核心能力都放在这里。
