@@ -18,20 +18,6 @@
 codex plugin marketplace add four-li/skills
 ```
 
-如果你更希望显式使用 Git URL，也可以写完整地址：
-
-```bash
-codex plugin marketplace add https://github.com/four-li/skills
-```
-
-本地开发或自测时，再用本地路径：
-
-```bash
-codex plugin marketplace add /path/to/fourli-skills
-```
-
-如果你的 Codex 工作流会使用 checkpoint，再安装对应插件即可。
-
 ### npx skills
 
 如果你使用支持 [skills](https://github.com/vercel-labs/skills) CLI 的 agent，也可以直接从这个仓库安装。
