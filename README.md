@@ -32,6 +32,24 @@ codex plugin marketplace add /path/to/fourli-skills
 
 如果你的 Codex 工作流会使用 checkpoint，再安装对应插件即可。
 
+### npx skills
+
+如果你使用支持 [skills](https://github.com/vercel-labs/skills) CLI 的 agent，也可以直接从这个仓库安装。
+
+先查看仓库里有哪些 skill：
+
+```bash
+npx skills add four-li/skills --list
+```
+
+例如，把 skill 全局安装给 `trae-cn`：
+
+```bash
+npx skills add four-li/skills --agent trae-cn -g -y
+```
+
+这个仓库当前已经可以被 `npx skills add` 直接识别，不需要额外的配置文件。能工作的关键是仓库根目录下存在符合约定的 `skills/<skill-name>/SKILL.md` 结构。
+
 ### 其他兼容 skills 的 agent
 
 优先读取仓库根目录下的 `skills/`。这个仓库的核心能力都放在这里。
