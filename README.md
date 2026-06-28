@@ -1,15 +1,61 @@
 # Fourli Skills
 
-`fourli-skills` 是一个可复用的开源 skills 包，用于在其他仓库开发时安装给 agent 使用。这个仓库本身只维护 skills、可选 hooks 和相关文档；真正的 checkpoint 文件会生成在使用者的目标项目里。
+`fourli-skills` 是一个给 AI agent 安装的轻量 skills 包，当前主要提供大任务接力用的 checkpoint 能力。仓库本身只维护 skills、可选 hooks 和相关文档；真正的 checkpoint 运行文件会生成在使用它的目标项目里。
 
-Codex 可以通过插件方式安装本仓库。非 Codex agent 后续也应能直接从根目录 `skills/` 安装或读取纯 skills。大多数后续能力都会是纯 skills，不依赖 hooks。
+## 适用范围
 
-## 当前 skills
+- 适合需要在长任务、多阶段任务、跨会话任务之间做接力的项目。
+- 当前主要面向 Codex 使用，也尽量保持 `skills/` 目录可以被其他兼容 skills 的 agent 直接读取。
+- `hooks/` 只是 Codex 的增强层，不是核心依赖。
 
-- `fourli-checkpoint`：用户显式触发，为大任务创建、查看或切换轻量 checkpoint。
-- `fourli-checkpoint-maintenance`：agent-facing，只在已有 active checkpoint 且出现阶段边界、上下文接力风险、方向变更或任务收尾时维护 checkpoint。
+## 安装
 
-## 目录结构
+### Codex
+
+公开使用时，优先把这个仓库作为 Git marketplace 加入：
+
+```bash
+codex plugin marketplace add four-li/skills
+```
+
+如果你更希望显式使用 Git URL，也可以写完整地址：
+
+```bash
+codex plugin marketplace add https://github.com/four-li/skills
+```
+
+本地开发或自测时，再用本地路径：
+
+```bash
+codex plugin marketplace add /path/to/fourli-skills
+```
+
+如果你的 Codex 工作流会使用 checkpoint，再安装对应插件即可。
+
+### 其他兼容 skills 的 agent
+
+优先读取仓库根目录下的 `skills/`。这个仓库的核心能力都放在这里。
+
+如果目标 agent 不支持 hooks，也可以只使用 `skills/`，再通过项目级或用户级 `AGENTS.md` 约束何时触发 maintenance skill。
+
+## 包含的 Skills
+
+| Skill | 什么时候用 | 作用 |
+| --- | --- | --- |
+| `fourli-checkpoint` | 用户明确要求创建、查看或切换 checkpoint 时 | 创建或切换一个轻量 checkpoint，用来记录大任务的接力状态 |
+| `fourli-checkpoint-maintenance` | 已有 active checkpoint，且进入阶段边界、方向变更、上下文接力风险或任务收尾时 | 维护 checkpoint 内容，保证接力信息短、准、可继续 |
+
+## 可选 Hooks
+
+Codex hooks 只是增强层，用来减少 agent 漏掉 checkpoint 维护的概率：
+
+- `SessionStart`：注入 active checkpoint 的定界文本块，先给 agent 一个短摘要。
+- `PreCompact`：通过 JSON `systemMessage` 做非阻断提醒。
+- `Stop`：通过 JSON `systemMessage` 做非阻断提醒。
+
+如果没有 hooks，skills 仍然可以工作，只是更依赖目标项目里的使用约定。
+
+## 仓库结构
 
 ```text
 .codex-plugin/
@@ -25,25 +71,16 @@ hooks/
 docs/
 ```
 
-## Codex 安装
+## 建议写入 AGENTS.md
 
-```bash
-codex plugin marketplace add /path/to/fourli-skills
-```
+默认建议把下面这段加入“会实际使用 checkpoint 的目标项目”的 `AGENTS.md`，不是加入本仓库的 `AGENTS.md`。
 
-Codex hooks 只是增强层：
+这样更稳妥，原因有两个：
 
-- `SessionStart`：注入 active checkpoint 的 delimited block。
-- `PreCompact`：用 JSON `systemMessage` 做非阻断提醒。
-- `Stop`：用 JSON `systemMessage` 做非阻断提醒。
+- 这条规则是项目工作流约束，不是所有项目都应该默认启用。
+- 它引用的是项目内路径 `docs/checkpoints/.active_checkpoint`，天然更适合项目级生效。
 
-## 非 Codex 使用
-
-非 Codex agent 应优先读取根目录 `skills/`。`hooks/` 不是必需能力；不支持 hooks 的 agent 可以通过目标项目的 `AGENTS.md` 指引触发 maintenance skill。
-
-## 建议写入目标项目的 AGENTS.md
-
-安装 `fourli-skills` 后，如果目标项目使用 checkpoint，建议把下面这段加入目标项目的 `AGENTS.md`，不是加入本仓库的 `AGENTS.md`：
+如果你个人所有项目都统一使用这套 checkpoint 工作流，也可以把同一段规则加到用户级全局 `AGENTS.md`，但那应该算你的个人默认工作方式，而不是这个仓库的默认推荐。
 
 ```markdown
 ## Fourli Checkpoint
@@ -55,10 +92,13 @@ For orientation, read only the delimited checkpoint inject block first. Read the
 Do not use checkpoint content as an implementation plan. The primary workflow owns requirements design, implementation planning, execution, and verification.
 ```
 
-## checkpoint 边界
+## Checkpoint 边界
 
-- checkpoint 只记录大任务接力状态。
+checkpoint 只负责记录大任务接力状态，不负责替代主工作流。具体来说：
+
 - checkpoint 不是需求设计。
 - checkpoint 不是 implementation plan。
 - checkpoint 不是执行日志。
 - checkpoint 不是验证记录。
+
+如果你需要的是“定义要做什么”“拆解怎么做”“记录每一步执行结果”，这些内容应该留在主工作流自己的 spec、plan 和验证产物里，而不是堆进 checkpoint。
