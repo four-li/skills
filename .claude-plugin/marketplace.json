@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "fourli-skills",
+  "name": "fourli",
   "description": "Checkpoint-focused skills for agent task handoff and session continuity.",
   "owner": {
     "name": "fourli",
