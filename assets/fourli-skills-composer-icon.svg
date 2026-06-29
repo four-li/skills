@@ -1,7 +1,11 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" rx="128" fill="#F5F7F4"/>
-  <rect x="120" y="148" width="188" height="212" rx="40" transform="rotate(-8 120 148)" fill="#BFD0C7"/>
-  <rect x="210" y="128" width="188" height="212" rx="40" transform="rotate(8 210 128)" fill="#4D6474"/>
-  <path d="M240 221C240 204.431 253.431 191 270 191H303C319.569 191 333 204.431 333 221V228H305C293.954 228 285 236.954 285 248V264H268C252.536 264 240 251.464 240 236V221Z" fill="#F5F7F4"/>
-  <path d="M272 271C272 256.641 283.641 245 298 245H333V271C333 285.359 321.359 297 307 297H272V271Z" fill="#8CBFA5"/>
+  <defs>
+    <clipPath id="icon-clip">
+      <rect width="512" height="512" rx="128" fill="white"/>
+    </clipPath>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="#2F60D2"/>
+  <g clip-path="url(#icon-clip)">
+    <image href="fourli-skills-logo-source.jpg" x="-30" y="26" width="572" height="513" preserveAspectRatio="xMidYMid slice"/>
+  </g>
 </svg>

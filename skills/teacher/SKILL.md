@@ -1,6 +1,6 @@
 ---
 name: teacher
-description: 仅在用户显式调用 `$teacher`、`teacher` 或要求“用 teacher 调研/讲解”时使用。用于中文优先、事实优先地联网调研并讲解技术、AI、GitHub 项目、产品、框架、skill、架构概念和工程社区内容；不要把调研范围默认限制在当前工作目录或当前仓库。
+description: Use only when explicitly invoked.
 ---
 
 # Fourli Teacher
