@@ -39,7 +39,7 @@ enabled = true
 npx skills add four-li/skills --agent trae-cn -g -y
 ```
 
-如果你是全局安装，后续只更新这个仓库安装出来的 skills，可以执行：
+如果你是全局安装，后续只更新这个仓库安装出来的 skills，可以执行更新指定skills：
 
 ```bash
 npx skills update -g think teacher code-opt checkpoint checkpoint-maintenance
