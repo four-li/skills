@@ -1,3 +1,4 @@
+
 # Fourli Skills
 
 `fourli-skills` 是一组给 AI agent 使用的 reusable skills（可复用技能）。它不是单一 checkpoint 插件，而是把我常用的几类工作方式拆成独立 skill：先想清楚、做技术讲解、简化代码、创建 checkpoint、维护 checkpoint。
