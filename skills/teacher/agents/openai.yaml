@@ -1,6 +1,3 @@
 interface:
   display_name: "fourli:teacher"
   short_description: "中文优先的事实型技术调研老师"
-  default_prompt: "Use $fourli-teacher to research and explain this technical topic with evidence, Chinese explanations, terminology notes, and engineering/architecture perspectives."
-policy:
-  allow_implicit_invocation: false

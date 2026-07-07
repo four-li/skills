@@ -1,0 +1,6 @@
+interface:
+  display_name: "fourli:handoff"
+  short_description: "创建或继续一次性 handoff 快照"
+  default_prompt: "使用 $handoff。默认创建 docs/handoffs/ 下的一次性事实接力快照；只有明确携带 #id 时才继续已有 handoff。"
+policy:
+  allow_implicit_invocation: false

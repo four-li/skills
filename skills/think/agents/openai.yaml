@@ -1,4 +1,3 @@
 interface:
   display_name: "fourli:think"
-  short_description: "短澄清或审问 spec，减少返工"
-  default_prompt: "使用 $think 处理这个需求：如果还没有草案，只做短意图澄清；如果已有 spec/design，就审问草案并补齐边界、失败路径和验收标准。"
+  short_description: "澄清需求并输出共识摘要"

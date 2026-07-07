@@ -6,8 +6,10 @@
 
 | Skill | 什么时候用 | 作用 |
 | --- | --- | --- |
-| `think` | 需求还模糊、用户要求先想清楚，或已有 draft spec/design 需要被审问时 | 做短意图澄清，或审问草案里的歧义、边界、失败路径和验收标准 |
+| `think` | 用户显式要求先想清楚、问透、grill 或澄清需求时 | 通过一问一答澄清需求，最后输出简短的需求共识摘要 |
 | `teacher` | 用户显式调用 `$teacher`、`teacher`，或要求用 teacher 调研/讲解技术问题时 | 联网查事实，用中文讲解技术、AI、项目、框架、架构概念和工程社区内容 |
+| `handoff` | 需要跨 agent 接力、保留当前对话的可继续上下文时 | 把当前对话压缩成 handoff 文档，默认写入 `docs/handoffs/` |
+| `fourli-research` | 用户显式要求做资料调研、并希望把结果沉淀到仓库时 | 只查一手资料，并把结论写成带引用的 Markdown，默认写入 `docs/research/` |
 | `code-opt` | 代码已经能工作，但结构、命名、重复或嵌套让它难读难维护时 | 在不改变行为的前提下简化代码 |
 | `checkpoint` | 用户明确要求创建、查看或切换 checkpoint 时 | 创建或切换一个轻量 checkpoint，用来记录大任务的接力状态 |
 | `checkpoint-maintenance` | 已有 active checkpoint，且进入阶段边界、方向变更、上下文接力风险或任务收尾时 | 维护 checkpoint 内容，保证接力信息短、准、可继续 |
@@ -42,12 +44,12 @@ npx skills add four-li/skills --agent trae-cn -g -y
 如果你是全局安装，后续只更新这个仓库安装出来的 skills，可以执行更新指定skills：
 
 ```bash
-npx skills update -g think teacher code-opt checkpoint checkpoint-maintenance
+npx skills update -g think teacher handoff fourli-research code-opt checkpoint checkpoint-maintenance
 ```
 
 ### 其他兼容 skills 的 agent
 
-优先读取仓库根目录下的 `skills/`。这个仓库的核心能力都在这里。
+优先读取仓库根目录下的 `skills/`。这个仓库的核心能力都在这里。新增的 `handoff`、`fourli-research` 也都在这里。
 
 如果目标 agent 不支持 hooks，也可以只使用 `skills/`。其中 `checkpoint-maintenance` 会更依赖目标项目里的 `AGENTS.md` 约束来提醒 agent 何时触发。
 

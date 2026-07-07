@@ -20,7 +20,7 @@
 ```
 fourli-skills/
 ├── skills/                 # 核心 skills（每个 skill = SKILL.md + agents/openai.yaml）
-│   ├── think/              #   需求审问（intent-intake / spec-grill）
+│   ├── think/              #   需求澄清与共识摘要
 │   ├── teacher/            #   中文技术调研讲解（禁止隐式触发）
 │   ├── code-opt/           #   代码简化（不改行为）
 │   ├── checkpoint/        #   创建/查看/切换 checkpoint
@@ -74,7 +74,7 @@ fourli-skills/
 
 | Skill | 显式/隐式 | 触发场景 |
 | --- | --- | --- |
-| `think` | 显式 | "先 think" / "grill" / "问透" / "审一下 spec" |
+| `think` | 显式 | "先 think" / "grill" / "问透" / "澄清需求" |
 | `teacher` | 显式（禁止隐式） | `$teacher` / "用 teacher 调研" |
 | `code-opt` | 显式 | 代码能跑但难读难维护 |
 | `checkpoint` | 显式 | 创建/查看/切换 checkpoint |
@@ -85,9 +85,9 @@ fourli-skills/
 `fourli-skills` 与 superpowers 配合，不替代：
 
 ```text
-intent-intake (think) → brainstorming (sp) → spec-grill (think) → writing-plans (sp) → implementation
-                                                                                    ↓ (大任务时)
-                                                                        checkpoint 创建一次 → maintenance 维护 → finish
+think（可选，先澄清需求）→ brainstorming (sp) → writing-plans (sp) → implementation
+                                                        ↓ (大任务时)
+                                            checkpoint 创建一次 → maintenance 维护 → finish
 ```
 
 `teacher` 和 `code-opt` 与上述流程正交，可独立调用。
