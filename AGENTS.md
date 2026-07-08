@@ -23,6 +23,7 @@ fourli-skills/
 │   ├── think/              #   需求澄清与共识摘要
 │   ├── teacher/            #   中文技术调研讲解（禁止隐式触发）
 │   ├── code-opt/           #   代码简化（不改行为）
+│   ├── code-audit/         #   发布前代码风险审核（只报告不修改）
 │   ├── checkpoint/        #   创建/查看/切换 checkpoint
 │   └── checkpoint-maintenance/  #   维护已有 active checkpoint
 ├── hooks/                  # Codex 生命周期 hooks（可选增强层）
@@ -77,6 +78,7 @@ fourli-skills/
 | `think` | 显式 | "先 think" / "grill" / "问透" / "澄清需求" |
 | `teacher` | 显式（禁止隐式） | `$teacher` / "用 teacher 调研" |
 | `code-opt` | 显式 | 代码能跑但难读难维护 |
+| `code-audit` | 显式 | 发布前/合并前审核已改动代码风险 |
 | `checkpoint` | 显式 | 创建/查看/切换 checkpoint |
 | `checkpoint-maintenance` | 隐式 | 已有 active checkpoint + 阶段边界/接力风险/方向变更/完成 |
 

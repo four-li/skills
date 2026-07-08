@@ -11,6 +11,7 @@
 | `handoff` | 需要跨 agent 接力、保留当前对话的可继续上下文时 | 把当前对话压缩成 handoff 文档，默认写入 `docs/handoffs/` |
 | `fourli-research` | 用户显式要求做资料调研、并希望把结果沉淀到仓库时 | 只查一手资料，并把结论写成带引用的 Markdown，默认写入 `docs/research/` |
 | `code-opt` | 代码已经能工作，但结构、命名、重复或嵌套让它难读难维护时 | 在不改变行为的前提下简化代码 |
+| `code-audit` | 发布前、合并前或修完 bug 后，用户显式要求审核已改动代码风险时 | 审核行为、业务语义、安全和发布兼容风险，只报告不修改 |
 | `checkpoint` | 用户明确要求创建、查看或切换 checkpoint 时 | 创建或切换一个轻量 checkpoint，用来记录大任务的接力状态 |
 | `checkpoint-maintenance` | 已有 active checkpoint，且进入阶段边界、方向变更、上下文接力风险或任务收尾时 | 维护 checkpoint 内容，保证接力信息短、准、可继续 |
 
@@ -23,7 +24,11 @@
 终端执行命令
 
 ```bash
+# 添加插件
 codex plugin marketplace add four-li/skills
+
+# 如需更新
+codex plugin marketplace upgrade fourli
 ```
 
 在 Codex App 里启用插件.(或codex cli中执行/plugins选择)后 `~/.codex/config.toml` 通常会出现：
@@ -44,7 +49,7 @@ npx skills add four-li/skills --agent trae-cn -g -y
 如果你是全局安装，后续只更新这个仓库安装出来的 skills，可以执行更新指定skills：
 
 ```bash
-npx skills update -g think teacher handoff fourli-research code-opt checkpoint checkpoint-maintenance
+npx skills update -g think teacher handoff fourli-research code-opt code-audit checkpoint checkpoint-maintenance
 ```
 
 ### 其他兼容 skills 的 agent

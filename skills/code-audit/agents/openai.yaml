@@ -1,0 +1,5 @@
+interface:
+  display_name: "fourli:code-audit"
+  short_description: "发布前审核已改动代码的真实风险"
+policy:
+  allow_implicit_invocation: false
